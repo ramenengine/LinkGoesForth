@@ -1,0 +1,11 @@
+/*/**
+/*/
+!/src/
+!/src/**
+!/bin/
+!/bin/**
+!.gitignore
+*.komodoproject
+.komodotools
+kitconfig.f
+allegro5.cfg
