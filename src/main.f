@@ -2,20 +2,23 @@ include afkit/ans/section
 
 [section] preamble
 empty
-$000100 include ramen/brick
-65536 2 * constant #MAXTILES
-include ramen/tiled/tilegame
-$000100 include ramen/lib/array2d
+    #1 #1 #0 include ramen/brick
+    65536 2 * constant #MAXTILES
+    include ramen/tiled/tiled
+    require ramen/lib/array2d
 
 [section] variables
     0 value bgbank
     0 value sprbank
+    0 value tinter
+
+    \ tile size
+    16 constant tw
+    16 constant th
 
     struct layer
         layer 0 svar bg.scrollx
         layer 0 svar bg.scrolly
-
-    1024 1024 array2d: tilebuf
 
     objlist stage
         stage 256 pool: objects0
@@ -41,39 +44,45 @@ $000100 include ramen/lib/array2d
         var scrolly
         var tbi       \ tile base index
 
+    \ extending the renderer; draw stuff either under or over the game
     defer background  :is background ;
     defer overlay     :is overlay ;
 
+    \ window rectangle
+    create window 0 , 48 , displayw , displayh 48 - ,
+
 [section] init
-    \ load sprite data
-    " sprites.dat" file-exists [if]
-        " sprites.dat" sprites /sprites @file
-    [then]
-    " sprites.f" file-exists [if]
-        " sprites.f" included
-    [then]
+
+\ load sprite data
+" sprites.dat" file-exists [if]
+    " sprites.dat" sprites /sprites @file
+[then]
+" sprites.f" file-exists [if]
+    " sprites.f" included
+[then]
 
 : init
     " data/bg.png" findfile loadbmp to bgbank
     " data/spr.png" findfile loadbmp to sprbank
-    bgbank 16 16 0 maketiles >r
-    sprbank 16 16 r> maketiles drop
+    bgbank tw th 1 maketiles >r
+    sprbank tw th r> maketiles drop
+    1024 for 1024 for  $10 rnd i j tilebuf loc !  loop loop
+    nativewh *bmp to tinter
 ; init
-
-[section] window
-    \ TODO
-: -window ;
-: +window ;
 
 [section] layers
 : transformed
-    \ noop for now
 ;
 : drawsprlayer
     as  en @ -exit  transformed  objects0 drawzsorted
 ;
+: scrollmap  ( x y w h -- )
+    clip>
+        window 2@ +at
+        scrollx 2@ tw th scroll
+            tilebuf loc  [ tilebuf pitch@ ]#  tilemap ;
 : drawbglayer
-    as  en @ -exit  transformed  tbi @ tilebase!  scrollx 2@ tsize scroll  tilebuf loc  tilebuf pitch@  tilemap
+    as  en @ -exit    transformed   window 4@ scrollmap
 ;
 : layers
     {
@@ -85,10 +94,23 @@ $000100 include ramen/lib/array2d
     }
 ;
 
-[section] mainloops
+[section] go
 : think  stage each> act ;
 : physics  stage each> vx x v+  y @ zdepth ! ;
 : /step  step> think stage multi ;
-: overworld show> -window grey backdrop +window background layers -window overlay ;
-: go /step overworld ;
+: overworld show> grey backdrop background layers overlay ;
+: go /step overworld ; go
+
+
+[section] objtest
+: *thing
+    objects1 one
+;
+: test
+    100 for  *thing  loop
+; test
+
+" data/world000.tmx" open-tilemap
+    0 tmxlayer 0 0 load-tmxlayer
+
 
