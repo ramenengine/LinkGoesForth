@@ -4,6 +4,8 @@
 !/src/**
 !/bin/
 !/bin/**
+!/data/
+!/data/**
 !.gitignore
 *.komodoproject
 .komodotools

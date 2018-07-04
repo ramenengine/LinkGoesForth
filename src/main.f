@@ -1,4 +1,5 @@
-include afkit/ans/section.f
+    include afkit/ans/section.f
+    warning off
 
 [section] preamble
 empty
