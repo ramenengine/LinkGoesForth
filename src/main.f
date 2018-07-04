@@ -66,14 +66,19 @@ empty
     " sprites.f" included
 [then]
 
-: init
+: loadgfx
     " data/bg.png" findfile loadbmp to bgbank
     " data/spr.png" findfile loadbmp to sprbank
     bgbank tw th 1 maketiles >r
     sprbank tw th r> maketiles drop
+;
+: init
+    loadgfx
     1024 for 1024 for  $10 rnd i j tilebuf loc !  loop loop
     nativewh *bmp to tinter
 ; init
+
+: reinit  -tiles loadgfx ;
 
 [section] layers
 : transformed
@@ -118,7 +123,7 @@ empty
 : west   coords x@ -exit  -1 coords x+!  4 20 * for  -4 bg0 's scrollx +!  pause  loop ;
 : east   1 coords x+!  4 20 * for  4 bg0 's scrollx +!  pause  loop ;
 
-: rld  " just src/main.f test" evaluate ;
+: rld  reinit  " just src/main.f test" evaluate ;
 
 : clear  objects1 each> me remove ;  clear
 : preview
