@@ -1,3 +1,4 @@
+
     include afkit/ans/section.f
     warning off
 
@@ -117,6 +118,8 @@ empty
 : west   coords x@ -exit  -1 coords x+!  4 20 * for  -4 bg0 's scrollx +!  pause  loop ;
 : east   1 coords x+!  4 20 * for  4 bg0 's scrollx +!  pause  loop ;
 
+: rld  " just src/main.f test" evaluate ;
+
 : clear  objects1 each> me remove ;  clear
 : preview
     0 perform>
@@ -125,6 +128,7 @@ empty
             <down> kpressed? if  south  then
             <left> kpressed? if  west  then
             <right> kpressed? if  east  then
+            <enter> kpressed? if  0 ['] rld later  then
             pause
         again
 ;
