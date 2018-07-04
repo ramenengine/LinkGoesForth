@@ -108,7 +108,7 @@ empty
 : think  stage each> act ;
 : physics  stage each> vx x v+  y @ zdepth ! ;
 : /step  step> think stage multi ;
-: overworld show> grey backdrop background layers overlay ;
+: overworld show> black backdrop background layers overlay ;
 : go /step overworld ; go
 
 
