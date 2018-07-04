@@ -1,11 +1,11 @@
-include afkit/ans/section
+include afkit/ans/section.f
 
 [section] preamble
 empty
-    #1 #1 #0 include ramen/brick
+    #1 #1 #0 include ramen/brick.f
     65536 2 * constant #MAXTILES
-    include ramen/tiled/tiled
-    require ramen/lib/array2d
+    require ramen/tiled/tiled.f
+    require ramen/lib/array2d.f
 
 [section] variables
     0 value bgbank
