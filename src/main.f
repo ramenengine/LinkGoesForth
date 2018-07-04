@@ -50,7 +50,10 @@ empty
     defer overlay     :is overlay ;
 
     \ window rectangle
-    create window 0 , 48 , displayw , displayh 48 - ,
+    create window 0 , 64 , displayw , displayh 64 - ,
+
+    \ screen coordinates
+    create coords  0 , 0 ,
 
 [section] init
 
@@ -103,12 +106,37 @@ empty
 : go /step overworld ; go
 
 
-[section] objtest
+[section] hud
+:is overlay  0 0 at  displayw 64 black rectf ;
+
+
+[section] test
+
+: north  coords y@ -exit  -1 coords y+!  8 11 * for  -2 bg0 's scrolly +!  pause  loop ;
+: south  1 coords y+!  8 11 * for  2 bg0 's scrolly +!  pause  loop ;
+: west   coords x@ -exit  -1 coords x+!  4 20 * for  -4 bg0 's scrollx +!  pause  loop ;
+: east   1 coords x+!  4 20 * for  4 bg0 's scrollx +!  pause  loop ;
+
+: clear  objects1 each> me remove ;  clear
+: preview
+    0 perform>
+        begin
+            <up> kpressed? if  north  then
+            <down> kpressed? if  south  then
+            <left> kpressed? if  west  then
+            <right> kpressed? if  east  then
+            pause
+        again
+;
+
+
+
 : *thing
     objects1 one
 ;
 : test
     100 for  *thing  loop
+    objects1 one preview
 ; test
 
 " data/world000.tmx" open-tilemap
