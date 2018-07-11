@@ -4,7 +4,7 @@
 
 [section] preamble
 empty
-    #1 #1 #0 include ramen/brick.f
+    #2 #0 #0 include ramen/brick.f
     65536 2 * constant #MAXTILES
     require ramen/tiled/tiled.f
     require ramen/lib/array2d.f
@@ -59,16 +59,16 @@ empty
 [section] init
 
 \ load sprite data
-" sprites.dat" file-exists [if]
-    " sprites.dat" sprites /sprites @file
+s" sprites.dat" file-exists [if]
+    s" sprites.dat" sprites /sprites @file
 [then]
-" sprites.f" file-exists [if]
-    " sprites.f" included
+s" sprites.f" file-exists [if]
+    s" sprites.f" included
 [then]
 
 : loadgfx
-    " data/bg.png" findfile loadbmp to bgbank
-    " data/spr.png" findfile loadbmp to sprbank
+    s" data/bg.png" findfile loadbmp to bgbank
+    s" data/spr.png" findfile loadbmp to sprbank
     bgbank tw th 1 maketiles >r
     sprbank tw th r> maketiles drop
 ;
@@ -123,7 +123,7 @@ empty
 : west   coords x@ -exit  -1 coords x+!  4 20 * for  -4 bg0 's scrollx +!  pause  loop ;
 : east   1 coords x+!  4 20 * for  4 bg0 's scrollx +!  pause  loop ;
 
-: rld  reinit  " just src/main.f test" evaluate ;
+: rld  reinit  s" just src/main.f test" evaluate ;
 
 : clear  objects1 each> me remove ;  clear
 : preview
@@ -148,7 +148,7 @@ empty
     objects1 one preview
 ; test
 
-" data/world000.tmx" open-tilemap
+s" data/world000.tmx" open-tilemap
     0 tmxlayer 0 0 load-tmxlayer
 
 
