@@ -1,4 +1,3 @@
-
     include afkit/ans/section.f
     warning off
 
@@ -17,6 +16,10 @@ empty
     \ tile size
     16 constant tw
     16 constant th
+    
+    \ tile buffers
+    tilebuf constant tilebuf0
+    1024 1024 buffer2d: tilebuf1
 
     struct layer
         layer 0 svar bg.scrollx
@@ -27,7 +30,7 @@ empty
         stage 256 pool: objects1
         stage 256 pool: objects2
 
-    \  the layers are orphan objects
+    \ the layers are orphan objects
     create spr0 object  en on
     create bg0 object   en on
     create spr1 object  en on
@@ -74,33 +77,35 @@ s" sprites.f" file-exists [if]
 ;
 : init
     loadgfx
-    1024 for 1024 for  $10 rnd i j tilebuf loc !  loop loop
+    1024 for 1024 for  $10 rnd i j tilebuf0 loc !  loop loop
     nativewh *bmp to tinter
 ; init
 
 : reinit  -tiles loadgfx ;
 
 [section] layers
-: transformed
-;
-: drawsprlayer
-    as  en @ -exit  transformed  objects0 drawzsorted
-;
-: scrollmap  ( x y w h -- )
-    clip>
+: transformed ;
+
+: drawsprlayer  ( list -- )
+    en @ 0= if drop exit then
+    transformed  drawzsorted ;
+
+: windowmap  ( array2d -- )
+    window 4@ clip>
         window 2@ +at
         scrollx 2@ tw th scroll
-            tilebuf loc  [ tilebuf pitch@ ]#  tilemap ;
+            third loc  swap pitch@  tilemap ;
 : drawbglayer
-    as  en @ -exit    transformed   window 4@ scrollmap
+    en @ 0= if drop exit then
+    transformed windowmap
 ;
 : layers
     {
-    spr0 drawsprlayer
-    bg0  drawbglayer
-    spr1 drawsprlayer
-    bg1  drawbglayer
-    spr2 drawsprlayer
+    objects0 spr0 as drawsprlayer
+    tilebuf0 bg0 as drawbglayer
+    objects1 spr1 as drawsprlayer
+    tilebuf1 bg1 as drawbglayer
+    objects2 spr2 as drawsprlayer
     }
 ;
 
@@ -149,6 +154,6 @@ s" sprites.f" file-exists [if]
 ; test
 
 s" data/world000.tmx" open-tilemap
-    0 tmxlayer 0 0 load-tmxlayer
+    0 tmxlayer tilebuf0 0 0 load-tmxlayer
 
 
