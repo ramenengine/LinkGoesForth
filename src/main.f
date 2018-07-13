@@ -54,7 +54,7 @@ empty
     defer overlay     :is overlay ;
 
     \ window rectangle
-    create window 0 , 64 , displayw , displayh 64 - ,
+    create window 0 , 32 , displayw , displayh 32 - ,
 
     \ screen coordinates
     create coords  0 , 0 ,
@@ -118,15 +118,15 @@ s" sprites.f" file-exists [if]
 
 
 [section] hud
-:is overlay  0 0 at  displayw 64 black rectf ;
+:is overlay  0 0 at  displayw 32 black rectf ;
 
 
 [section] test
 
-: north  coords y@ -exit  -1 coords y+!  8 11 * for  -2 bg0 's scrolly +!  pause  loop ;
-: south  1 coords y+!  8 11 * for  2 bg0 's scrolly +!  pause  loop ;
-: west   coords x@ -exit  -1 coords x+!  4 20 * for  -4 bg0 's scrollx +!  pause  loop ;
-: east   1 coords x+!  4 20 * for  4 bg0 's scrollx +!  pause  loop ;
+: north  coords y@ -exit  -1 coords y+!  4 13 * for  -4 bg0 's scrolly +!  pause  loop ;
+: south  1 coords y+!  4 13 * for  4 bg0 's scrolly +!  pause  loop ;
+: west   coords x@ -exit  -1 coords x+!  2 20 * for  -8 bg0 's scrollx +!  pause  loop ;
+: east   1 coords x+!  2 20 * for  8 bg0 's scrollx +!  pause  loop ;
 
 : rld  reinit  s" just src/main.f test" evaluate ;
 
