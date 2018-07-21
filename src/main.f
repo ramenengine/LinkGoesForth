@@ -13,6 +13,7 @@ empty
 \   save data
 
 
+
 \ ---------------------------------------------------------------------------------------------------------
 [section] hud
 
@@ -28,14 +29,13 @@ empty
 \ ---------------------------------------------------------------------------------------------------------
 [section] test
 
-: north  coords y@ -exit  -1 coords y+!  4 13 * for  -4 bg0 's scrolly +!  pause  loop ;
-: south  1 coords y+!  4 13 * for  4 bg0 's scrolly +!  pause  loop ;
-: west   coords x@ -exit  -1 coords x+!  2 20 * for  -8 bg0 's scrollx +!  pause  loop ;
-: east   1 coords x+!  2 20 * for  8 bg0 's scrollx +!  pause  loop ;
+: north  coords y@ -exit  -1 coords y+!  4 13 * for  -4 bgcam y+!  pause  loop ;
+: south  1 coords y+!  4 13 * for  4 bgcam y+!  pause  loop ;
+: west   coords x@ -exit  -1 coords x+!  2 20 * for  -8 bgcam x+!  pause  loop ;
+: east   1 coords x+!  2 20 * for  8 bgcam x+!  pause  loop ;
 
 : rld  reinit  s" just src/main.f test" evaluate ;
 
-: clear  objects1 each> me remove ;  clear
 : preview
     0 perform>
         begin
@@ -47,15 +47,18 @@ empty
             pause
         again
 ;
+
 : *thing
-    objects1 one
+    objects one
 ;
+
 : test
+    objects clear
     100 for  *thing  loop
-    objects1 one preview
+    objects one preview
 ; test
 
 s" data/world000.tmx" open-tilemap
     0 tmxlayer tilebuf0 0 0 load-tmxlayer
-
+    1 tmxlayer tilebuf1 0 0 load-tmxlayer
 

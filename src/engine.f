@@ -23,18 +23,17 @@
         layer 0 svar bg.scrolly
 
     objlist stage
-        stage 256 pool: objects0
-        stage 256 pool: objects1
-        stage 256 pool: objects2
+        stage 256 pool: objects
 
     \ the layers are orphan objects
-    create spr0 object  en on
-    create bg0 object   en on
-    create spr1 object  en on
-    create bg1 object   en on
-    create spr2 object  en on
+    objlist layers
+        layers object: spr0 
+        layers object: bg0  
+        layers object: spr1 
+        layers object: bg1  
+        layers object: spr2 
 
-    \ add object priority:
+    \ add object priority.  can be 0, 1, or 2.
         var priority
 
     \ extend objects: transform info (used by layers too)
@@ -55,6 +54,10 @@
 
     \ screen coordinates
     create coords  0 , 0 ,
+    
+    \ background camera
+    create bgcam 0 , 0 , 
+
     
 \ ---------------------------------------------------------------------------------------------------------
 [section] init
@@ -81,36 +84,56 @@ s" sprites.f" file-exists [if]
 
 : reinit  -tiles loadgfx ;
 
+\ ---------------------------------------------------------------------------------------------------------
 [section] layers
+
 : transformed ;
 
+variable p
+
+: enqueue  ( objlist -- )  each>   hidden @ ?exit  priority @ p @ <> ?exit  me , ;
+
+: drawobjects  ( objlist priority -- )
+    priority !
+    { >r  here dup  r> enqueue  #queued  2dup zsort  drawem  reclaim } ;
+
 : drawsprlayer  ( list -- )
-    en @ 0= if drop exit then
-    transformed  drawzsorted ;
+    en @ 0= if  2drop  exit then
+    transformed  drawobjects ;
 
 : windowmap  ( array2d -- )
     window 4@ clip>
         window 2@ +at
         scrollx 2@ tw th scroll
             third loc  swap pitch@  tilemap ;
+
 : drawbglayer
     en @ 0= if drop exit then
+    bgcam 2@ scrollx 2!
     transformed windowmap
 ;
+
 : layers
     {
-    objects0 spr0 as drawsprlayer
-    tilebuf0 bg0 as drawbglayer
-    objects1 spr1 as drawsprlayer
-    tilebuf1 bg1 as drawbglayer
-    objects2 spr2 as drawsprlayer
+        spr0 as objects 0 drawsprlayer
+        bg0 as tilebuf0   drawbglayer
+        spr1 as objects 1 drawsprlayer
+        bg1 as tilebuf1   drawbglayer
+        spr2 as objects 2 drawsprlayer
     }
 ;
 
 \ ---------------------------------------------------------------------------------------------------------
 [section] go
+
 : think  stage each> act ;
 : physics  stage each> vx x v+  y @ zdepth ! ;
 : /step  step> think stage multi ;
 : overworld show> black backdrop background layers overlay ;
 : go /step overworld ; go
+
+\ ---------------------------------------------------------------------------------------------------------
+[section] helpers
+
+: clear  each> me remove ;  
+
