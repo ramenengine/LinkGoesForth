@@ -1,7 +1,11 @@
     #2 #0 #0 include ramen/brick.f
-    65536 2 * constant #MAXTILES
+
+    65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal
+
     require ramen/tiled/tiled.f
-    require ramen/lib/array2d.f
+    require ramen/lib/buffer2d.f
+    require src/kbfocus.f
+    require src/drawobjects.f
 
 \ ---------------------------------------------------------------------------------------------------------
 [section] variables
@@ -63,12 +67,12 @@
 [section] init
 
 \ load sprite data
-s" sprites.dat" file-exists [if]
-    s" sprites.dat" sprites /sprites @file
-[then]
-s" sprites.f" file-exists [if]
-    s" sprites.f" included
-[then]
+\ s" sprites.dat" file-exists [if]
+\     s" sprites.dat" sprites /sprites @file
+\ [then]
+\ s" sprites.f" file-exists [if]
+\     s" sprites.f" included
+\ [then]
 
 : loadgfx
     s" data/bg.png" findfile loadbmp to bgbank
@@ -88,14 +92,6 @@ s" sprites.f" file-exists [if]
 [section] layers
 
 : transformed ;
-
-variable p
-
-: enqueue  ( objlist -- )  each>   hidden @ ?exit  priority @ p @ <> ?exit  me , ;
-
-: drawobjects  ( objlist priority -- )
-    priority !
-    { >r  here dup  r> enqueue  #queued  2dup zsort  drawem  reclaim } ;
 
 : drawsprlayer  ( list -- )
     en @ 0= if  2drop  exit then
