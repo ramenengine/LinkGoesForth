@@ -1,15 +1,5 @@
-/*/**
-/*/
-!/src/
-!/src/**
-!/bin/
-!/bin/**
-!/data/
-!/data/**
-!.gitignore
-!/design/
-!/design/**
-
+afkit
+ramen
 *.komodoproject
 .komodotools
 kitconfig.f
