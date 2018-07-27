@@ -1,22 +1,12 @@
-action turn     ( dir -- )
-action forward  ( speed -- )
-action back     ( speed -- )
-action strafe   ( speed dir -- )
-action attack   ( atk-type -- )
-action hurt     ( AP -- )
-
-rolevar attrs   \ bitmask
-rolevar atk     \ multiplier
-rolevar def     \ multiplier
-rolevar spd     \ multiplier
-
-rolevar sprbase \ index
 
 var dir
-#1  bit up  bit right  bit down  bit left  drop
+0 constant right
+1 constant up
+2 constant left
+3 constant down
 
 roledef actor
-    1 actor spd !
+
 
 \ actor ( data -- <name> init-code ; )  ( objlist -- )
 \   data:

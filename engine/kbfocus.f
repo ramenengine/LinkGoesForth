@@ -1,7 +1,8 @@
 \ transparent keyboard focus for LinkGoesForth
 \ objects are given an OBJGROUP rolevar
 \ this points to a table KEYGROUPS - bitmasks for each objgroup
-\ to give different objgroups input focus, just change the corresponding bitmask in KEYGROUPS
+\ to give different objgroups input focus, just change the corresponding bitmask in the KEYGROUPS stack.
+\ by default every object's keygroup is #0.
 
 \ an additional table called KEYDEFS defines the keygroup of each key.
 
@@ -22,10 +23,11 @@
     value LAST_KEYDEF
     
     rolevar objgroup
-    create keygroups  16 cellstack  \ this is user definable.  default everything responds to everything
+    
+    create keygroups  16 stack  \ this is user definable.  default everything responds to everything
         keygroups 0 [] 16 $FFFFFFFF ifill
+    create keydefs  256 stack
 
-    create keydefs    256 cellstack
     : keydef!  swap keydefs nth ! ;
     : keydef@  swap keydefs nth @ ;
         <left>  KEYS_UI keydef!
