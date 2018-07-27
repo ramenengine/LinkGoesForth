@@ -1,6 +1,6 @@
 create engine/engine.f  \ fixes require bug
 
-#2 #0 #0 include ramen/brick.f
+#1 #0 #0 include ramen/brick.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal
 

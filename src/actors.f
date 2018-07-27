@@ -15,11 +15,15 @@ rolevar spd     \ multiplier
 rolevar sprbase \ index
 
 var dir
-1 constant up
-2 constant right
-3 constant down
-4 constant left
 
 roledef actor
     1 actor spd !
+
+\ actor ( data -- <name> init-code ; )  ( objlist -- )
+\   data:
+\       mbx , mby , mbw , mbh ,  \ map hitbox
+\ /actor  ( data -- )  initialize actor using given data
+: /actor  @  mbx 4 imove ;
+: does-actor  does> swap one  dup /actor  cell+ @ execute ;
+: actor:   create does-actor  ( data ) ,  here 0 ,  :noname swap ! ;
     
