@@ -121,5 +121,5 @@
 : klast      ?filter  kblast swap al_key_down  ;
 : kstate     ?filter  kbstate swap al_key_down ;
 : kdelta     ?filter  >r  r@ kstate #1 and  r> klast #1 and  - ;
-: kpressed?  ?filter  kdelta #1 = ;
-: kreleased? ?filter  kdelta #-1 = ;
+: pressed    ?filter  kdelta #1 = ;
+: released   ?filter  kdelta #-1 = ;

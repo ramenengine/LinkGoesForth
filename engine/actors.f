@@ -1,5 +1,3 @@
-require engine/engine.f
-
 action turn     ( dir -- )
 action forward  ( speed -- )
 action back     ( speed -- )
@@ -15,6 +13,7 @@ rolevar spd     \ multiplier
 rolevar sprbase \ index
 
 var dir
+#1  bit up  bit right  bit down  bit left  drop
 
 roledef actor
     1 actor spd !
@@ -23,7 +22,7 @@ roledef actor
 \   data:
 \       mbx , mby , mbw , mbh ,  \ map hitbox
 \ /actor  ( data -- )  initialize actor using given data
-: /actor  @  mbx 4 imove ;
+: /actor  @  mbx 4 imove  down dir ! ;
 : does-actor  does> swap one  dup /actor  cell+ @ execute ;
 : actor:   create does-actor  ( data ) ,  here 0 ,  :noname swap ! ;
     

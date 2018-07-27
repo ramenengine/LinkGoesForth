@@ -17,11 +17,11 @@
     0 perform>
         begin
             ctrl? if
-            <up> kpressed? if  north  then
-            <down> kpressed? if  south  then
-            <left> kpressed? if  west  then
-            <right> kpressed? if  east  then
-            <enter> kpressed? if  0 [']  rld later  then
+                <up> pressed if  north  then
+                <down> pressed if  south  then
+                <left> pressed if  west  then
+                <right> pressed if  east  then
+                <enter> pressed if  0 [']  rld later  then
             then 
             pause
         again
