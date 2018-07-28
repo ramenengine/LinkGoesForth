@@ -8,7 +8,7 @@ require ramen/tiled/tiled.f
 require ramen/lib/buffer2d.f
 require engine/kbfocus.f
 require engine/drawobjects.f
-require engine/actors.f
+require engine/actor.f
 
 include engine/variables.f
 include engine/init.f
