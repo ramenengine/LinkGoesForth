@@ -13,6 +13,9 @@ rolevar actordata
 roledef: actor
 ;roledef
 
+: greeny  draw>  16 16 green rectf ;
+: one  one greeny ;
+
 \ actor: ( actordata role -- <name> init-code ; )  ( objlist -- )
 \   The actordata is a mechanism by which you can have many types of actors
 \   that share most of the same behavior but differ in some parameters.

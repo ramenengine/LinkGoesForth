@@ -28,4 +28,4 @@
         up? if up dir ! exit then
         down? if down dir ! exit then ;
 
-: greeny  draw>  16 16 green rectf ;
+table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table
