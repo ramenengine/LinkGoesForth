@@ -22,6 +22,7 @@
         pright? if right dir ! exit then
         pup? if up dir ! exit then
         pdown? if down dir ! exit then ;
+
 : sudlr4 ( -- )  \ detects state, no diagonals, no velocity stuff
         left? if left dir ! exit then
         right? if right dir ! exit then

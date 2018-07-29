@@ -1,6 +1,6 @@
 \ main character
     
-require engine/lib/avatar.f
+require engine/lib/avatara.f
 
 s" data/samurai.png" frames
     ( 00 ) 0 , 0 , 16 , 16 , 0 , 0 ,  \ down

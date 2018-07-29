@@ -56,4 +56,4 @@ include src/actors/mc.f
 
 objects clear    
 objects one preview
-150 150 at  objects *mc  ME VALUE MC  2 priority !
+128 128 at  objects *mc  ME VALUE MC  2 priority !

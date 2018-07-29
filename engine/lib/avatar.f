@@ -20,11 +20,8 @@ actor derive: avatar
 
 : ?turnstop
     dirkeys? 0= if  idle exit then
-    <left> released  <right> released or  <up> released or  <down> released or if
-        sudlr4  ?walk
-    else
-        pudlr4  ?walk
-    then ;
+    <left> released  <right> released or  <up> released or  <down> released or
+        if  sudlr4  else  pudlr4  then  ?walk ;
 
 avatar :to walk  walk_anim_speed anmspd !  act>  ?turnstop ;
 avatar :to idle  -vel  ?face  0 anmspd !  act>  pudlr4  ?walk ;

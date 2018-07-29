@@ -120,8 +120,8 @@ create keydefs  256 stack
     dup keydef@  objgroup @ keygroups nth @  and ?exit
     drop 0 r> drop ; 
 
-: klast      ?filter  kblast swap al_key_down  ;
-: kstate     ?filter  kbstate swap al_key_down ;
-: kdelta     ?filter  >r  r@ kstate #1 and  r> klast #1 and  - ;
+: klast      ?filter  kblast keydown ;
+: kstate     ?filter  kbstate keydown ;
+: kdelta     >r  r@ kstate #1 and  r> klast #1 and  - ;
 : pressed    kdelta #1 = ;
 : released   kdelta #-1 = ;
