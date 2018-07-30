@@ -14,8 +14,6 @@
 
 : init
     loadgfx
-    \ 1024 for 1024 for  $10 rnd i j .s tilebuf0 loc !  loop loop
-    \ nativewh *bmp to tinter
 ; init
 
 : reinit  -tiles loadgfx ;

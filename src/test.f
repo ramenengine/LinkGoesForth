@@ -6,11 +6,6 @@
     \ actually maybe could also draw the status screen here too just offscreen (we scroll up to see it)
 ;
 
-: north  coords y@ -exit  -1 coords y+!  4 13 * for  -4 bgcam y+!  pause  loop ;
-: south  1 coords y+!  4 13 * for  4 bgcam y+!  pause  loop ;
-: west   coords x@ -exit  -1 coords x+!  2 20 * for  -8 bgcam x+!  pause  loop ;
-: east   1 coords x+!  2 20 * for  8 bgcam x+!  pause  loop ;
-
 : rld  reinit  s" include src/test.f" evaluate ;
 
 : preview
@@ -26,15 +21,6 @@
             pause
         again
 ;
-
-\ : *thing
-\     objects one
-\ ;
-\ : test
-\     objects clear
-\     100 for  *thing  loop
-\     objects one preview
-\ ; test
 
 create tileprops  hex
 00 c,
@@ -56,4 +42,4 @@ include src/actors/mc.f
 
 objects clear    
 objects one preview
-128 128 at  objects *mc  ME VALUE MC  2 priority !
+128 128 at  objects *mc  me to p1  2 priority !

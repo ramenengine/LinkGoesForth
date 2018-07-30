@@ -15,8 +15,8 @@ roledef: actor
 
 \ actor: ( actordata role -- <name> init-code ; )  ( objlist -- )
 \   The actordata is a mechanism by which you can have many types of actors
-\   that share most of the same behavior but differ in some parameters.
-\   Or the other way around.
+\ that share most of the same behavior but differ in some parameters.
+\ Or the other way around.
 
 \   actordata ->
 \       mbx , mby , mbw , mbh ,  \ map hitbox

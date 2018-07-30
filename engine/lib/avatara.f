@@ -13,6 +13,7 @@ actor derive: avatar
 action idle
 action walk
 
+
 : dirkeys?  left? right? or up? or down? or ;
 : ?face
     dir @ olddir @ <> if
@@ -21,6 +22,17 @@ action walk
         walkanms @ dir @ [] @ execute
     then 
 ;
+
+: fakeload  -vel  15 pauses ;
+: shiftwait  begin pause scrshift @ 0= until  x @ 1 + dup 8 mod - x !  y @ 1 + dup 8 mod - y !  idle ;
+
+: ?edge
+    dirkeys? -exit
+    x @ pfloor cam 's x @ -  0 <=  left? and             if  fakeload  west  shiftwait  then
+    x @ pfloor cam 's x @ -  320 mbw @ -  >=  right? and if  fakeload  east  shiftwait  then
+    y @ pfloor cam 's y @ 8 + -  0 <=  up? and           if  fakeload  north shiftwait  then
+    y @ pfloor cam 's y @ -  208 mbh @ -  >=  down? and  if  fakeload  south shiftwait  then ;
+
 : !walkv   walkv dir @ 2 * [] 2@  spd @ dup 2*  vx 2! ;
 : ?walk    dirkeys? -exit  walk ;
 
@@ -32,5 +44,11 @@ action walk
     vx @ if x @ 1 + [ 7 invert ]# and x ! then
     vy @ if y @ 1 + [ 7 invert ]# and y ! then ;
 
-avatar :to walk  walk_anim_speed anmspd !  !walkv  ?face  0 perform>  begin  1pace  ?turnstop  again ;
-avatar :to idle  -vel  ?face  0 anmspd !  0 perform> begin  pudlr4  ?walk  pause again ;
+
+avatar :to walk
+    walk_anim_speed anmspd !  !walkv  ?face
+    0 perform>  begin  ?edge  1pace  ?turnstop  again ;
+    
+avatar :to idle
+    -vel  ?face  0 anmspd !
+    0 perform>  begin  sudlr4  ?walk  pause again ;

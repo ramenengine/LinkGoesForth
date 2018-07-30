@@ -1,8 +1,11 @@
+: gscale  initial-scale dup 2p 2* ;
+
 
 : drawsprlayer  ( list priority -- )
     en @ 0= if  2drop  exit then
     unmount
-    m1 window 2@ initial-scale dup 2p 2* 2af al_translate_transform
+    m1 cam 's x 2@ 2negate gscale 2af al_translate_transform
+    m1 window 2@ gscale 2af al_translate_transform
     m1 al_use_transform
     drawobjects
     unmount
@@ -16,7 +19,7 @@
 
 : drawbglayer
     en @ 0= if drop exit then    
-    bgcam 2@ scrollx 2!
+    cam 's x 2@ scrollx 2!
     windowmap
 ;
 

@@ -24,6 +24,9 @@ objlist layers
     layers object: bg1  
     layers object: spr2 
 
+objlist game
+    game object: cam    \ camera
+
 \ add object priority.  can be 0, 1, or 2.
 var priority
 
@@ -46,5 +49,9 @@ create window 0 , 32 , displayw , displayh 32 - ,
 \ screen coordinates
 create coords  0 , 0 ,
 
-\ background camera
-create bgcam 0 , 0 , 
+\ player 1
+0 value p1
+
+\ object groups
+0 constant default_group
+1 constant ui_group
