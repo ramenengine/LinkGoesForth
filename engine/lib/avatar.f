@@ -7,6 +7,9 @@ actor derive: avatar
     1.5 spd !  
 ;roledef
 
+action idle
+action walk
+
 : dirkeys?  left? right? up? down? or or or ;
 : ?face
     dir @ olddir @ <> if

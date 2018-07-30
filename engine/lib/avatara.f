@@ -4,13 +4,14 @@
 var olddir
 rolevar walkanms
 rolevar spd
-
-
  
 actor derive: avatar
     1.5 spd !  
     8 spd @ / constant walk_snap
 ;roledef
+
+action idle
+action walk
 
 : dirkeys?  left? right? or up? or down? or ;
 : ?face

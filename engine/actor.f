@@ -5,9 +5,6 @@ var dir
 2 constant left
 3 constant down
 
-action idle
-action walk
-
 rolevar actordata
 
 roledef: actor
