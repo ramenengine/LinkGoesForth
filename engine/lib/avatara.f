@@ -15,6 +15,7 @@ action walk
 
 
 : dirkeys?  left? right? or up? or down? or ;
+: dirkeysup?  <left> released  <right> released or  <up> released or  <down> released or ;
 : ?face
     dir @ olddir @ <> if
         dir @ olddir !
@@ -28,17 +29,16 @@ action walk
 
 : ?edge
     dirkeys? -exit
-    x @ pfloor cam 's x @ -  0 <=  left? and             if  fakeload  west  shiftwait  then
-    x @ pfloor cam 's x @ -  320 mbw @ -  >=  right? and if  fakeload  east  shiftwait  then
-    y @ pfloor cam 's y @ 8 + -  0 <=  up? and           if  fakeload  north shiftwait  then
-    y @ pfloor cam 's y @ -  208 mbh @ -  >=  down? and  if  fakeload  south shiftwait  then ;
+    x @ cam 's x @ -  0 <=  left? and             if  fakeload  west  shiftwait  then
+    x @ cam 's x @ -  320 mbw @ -  >=  right? and if  fakeload  east  shiftwait  then
+    y @ cam 's y @ 8 + -  0 <=  up? and           if  fakeload  north shiftwait  then
+    y @ cam 's y @ -  208 mbh @ -  >=  down? and  if  fakeload  south shiftwait  then ;
 
 : !walkv   walkv dir @ 2 * [] 2@  spd @ dup 2*  vx 2! ;
 : ?walk    dirkeys? -exit  walk ;
 
-: ?turnstop  dirkeys? 0= if  idle pause  exit then  ?face !walkv ;
-: ?udlr4  <left> released  <right> released or  <up> released or  <down> released or 
-        if  sudlr4  else  pudlr4  then ;
+: ?turnstop  dirkeys? 0= if  idle  exit then  ?face !walkv ;
+: ?udlr4  dirkeysup? if  sudlr4  else  pudlr4  then ;
         
 : 1pace  walk_snap 0 do  pause  ?udlr4  loop
     vx @ if x @ 1 + [ 7 invert ]# and x ! then

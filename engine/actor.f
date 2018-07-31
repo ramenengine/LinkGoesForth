@@ -10,8 +10,6 @@ rolevar actordata
 roledef: actor
 ;roledef
 
-: greeny  draw>  16 16 green rectf ;
-: one  one greeny ;
 
 \ actor: ( actordata role -- <name> init-code ; )  ( objlist -- )
 \   The actordata is a mechanism by which you can have many types of actors
@@ -23,6 +21,7 @@ roledef: actor
 
 \ /actor  ( role -- )  initialize actor using given role 
 
+: greeny  draw>  16 16 green rectf ;
 : /actor  @ role !  actordata @ mbx 4 imove  down dir ! ;
-: does-actor  does> swap one  dup /actor  cell+ @ execute ;
+: does-actor  does> swap one  greeny  dup /actor  cell+ @ execute ;
 : actor:   create does-actor  swap over 's actordata !  ( role ) ,  here 0 ,  :noname swap ! ;
