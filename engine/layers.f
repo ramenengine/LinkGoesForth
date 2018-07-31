@@ -25,11 +25,11 @@
 
 : layers
     {
+        hud
         spr0 as objects 0 drawsprlayer
         bg0 as tilebuf0   drawbglayer
         spr1 as objects 1 drawsprlayer
         bg1 as tilebuf1   drawbglayer
-        hud
         spr2 as objects 2 drawsprlayer
     }
 ;

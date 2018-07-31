@@ -1,6 +1,6 @@
 
 :is hud
-    0 0 at  displayw 32 black rectf
+\    0 0 at  displayw 32 black rectf
     \ show hearts
     \ show current item
     \ actually maybe could also draw the status screen here too just offscreen (we scroll up to see it)
@@ -42,4 +42,4 @@ include src/actors/mc.f
 
 objects clear    
 objects one preview
-128 128 at  objects *mc  me to p1  2 priority !
+128 128 at  objects *mc  me to p1  1 priority !
