@@ -4,3 +4,5 @@ ramen
 .komodotools
 kitconfig.f
 allegro5.cfg
+
+*.bak

@@ -8,29 +8,19 @@
 
 : rld  reinit  s" include src/test.f" evaluate ;
 
-: preview
-    0 perform>
-        begin
-            ctrl? if
-                <up> pressed if  north  then
-                <down> pressed if  south  then
-                <left> pressed if  west  then
-                <right> pressed if  east  then
-                <enter> pressed if  0 [']  rld later  then
-            then 
-            pause
-        again
+: previewkeys
+    scrshift @ ?exit
+    ctrl? -exit
+        <up> pressed if  north  exit then
+        <down> pressed if  south  exit then
+        <left> pressed if  west  exit then
+        <right> pressed if  east  exit then
+        <enter> pressed if  0 [']  rld later  then
 ;
 
-create tileprops  hex
-00 c,
-0f c, 00 c, $1f c, $1f c, 20 c, 00 c, 00 c, 00 c,     00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-0f c, 00 c, 00 c, 00 c, 0f c, 00 c, 00 c, 00 c,     00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-00 c, 00 c, 00 c, 00 c, 0f c, 00 c, 00 c, 00 c,     00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,    00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c, 00 c,
-fixed
+: preview  act> previewkeys ;
+
+create tileprops  s" data/tileprops.dat" file,
 
 :is tileprops@  1i tileprops + c@ ;
 
