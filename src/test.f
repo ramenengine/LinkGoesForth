@@ -24,12 +24,20 @@ create tileprops  s" data/tileprops.dat" file,
 
 :is tileprops@  1i tileprops + c@ ;
 
-s" data/world000.tmx" open-tilemap
-    0 tmxlayer tilebuf0 0 0 load-tmxlayer
-    1 tmxlayer tilebuf1 0 0 load-tmxlayer
 
 include src/actors/mc.f
 
 objects clear    
 objects one preview
 128 128 at  objects *mc  me to p1  1 priority !
+
+: go
+    init
+    s" data/world000.tmx" open-tilemap
+    0 tmxlayer tilebuf0 0 0 load-tmxlayer
+    1 tmxlayer tilebuf1 0 0 load-tmxlayer
+;
+
+go
+
+' go publish bin/test/test

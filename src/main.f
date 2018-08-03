@@ -1,3 +1,5 @@
+#1    constant allegro-display-flags  \ windowed
+
 include afkit/ans/section.f
 warning off
 
