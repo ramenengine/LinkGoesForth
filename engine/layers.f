@@ -1,24 +1,15 @@
-: gscale  globalscale fs @ if 2 * then dup 2* ;
-
-
-: 1-1
-    m1 al_identity_transform
-    m1 globalscale fs @ if 2 * then 1af dup al_scale_transform
-    m1 al_use_transform
-;
-
-
 : drawsprlayer  ( list priority -- )
     en @ 0= if  2drop  exit then
-    1-1
-    m1 cam 's x 2@ 2negate gscale 2af al_translate_transform
-    m1 window 2@ gscale 2af al_translate_transform
-    m1 al_use_transform
+    mount
+        m1 cam 's x 2@ 2negate gscale 2af al_translate_transform
+        m1 window 2@ gscale 2af al_translate_transform
+        m1 al_use_transform
     drawobjects
-    1-1
+    mount
     ;
 
 : windowmap  ( array2d -- )
+    mount
     window 4@ clip>
         window 2@ at
         scrollx 2@ tw th scroll

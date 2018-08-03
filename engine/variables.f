@@ -44,7 +44,7 @@ defer background  :is background ;
 defer hud         :is hud ;
 
 \ window rectangle
-create window 0 , 32 , displayw , displayh 32 - ,
+create window 0 , 32 , vieww , viewh 32 - ,
 
 \ screen coordinates
 create coords  0 , 0 ,

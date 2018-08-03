@@ -1,12 +1,6 @@
-#1    constant allegro-display-flags  \ windowed
-
-include afkit/ans/section.f
 warning off
-
-\ ---------------------------------------------------------------------------------------------------------
-[section] preamble
-
 empty
+#1    constant initial-display-flags  \ windowed
 include engine/engine.f
     
 \ stuff and things
