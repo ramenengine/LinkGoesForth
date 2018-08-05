@@ -28,6 +28,9 @@ create keygroups  16 stack  \ this is user definable.  default everything respon
     keygroups 0 [] 16 $FFFFFFFF ifill
 create keydefs  256 stack
 
+: +keygroup  keygroups nth on ;
+: -keygroup  keygroups nth off ;
+
 : keydef!  swap 1p keydefs nth ! ;
 : keydef@  1p keydefs nth @ ;
     <left>  KEYS_UI keydef!

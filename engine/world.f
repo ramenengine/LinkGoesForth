@@ -1,7 +1,7 @@
 variable scrshift
 
-: +scrshift  scrshift on   keygroups default_group [] off ;
-: -scrshift  scrshift off  cam -> -vel  p1 -> -vel  keygroups default_group [] on ;
+: +scrshift  scrshift on   default_group -keygroup ;
+: -scrshift  scrshift off  -vel  cam -> -vel  default_group +keygroup ;
 : (shift)    +scrshift  perform>  pauses  -scrshift ;
 : shiftfor   { cam as  vx 2!  (shift) } ;
 

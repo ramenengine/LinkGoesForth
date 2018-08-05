@@ -24,7 +24,7 @@ action walk
     then 
 ;
 
-: fakeload  -vel  15 pauses ;
+: fakeload  -vel  0 anmspd @!  15 pauses  anmspd ! ;
 : shiftwait  begin pause scrshift @ 0= until  x @ 1 + dup 8 mod - x !  y @ 1 + dup 8 mod - y !  idle ;
 
 : ?edge
