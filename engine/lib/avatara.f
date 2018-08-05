@@ -52,3 +52,5 @@ avatar :to walk
 avatar :to idle
     -vel  ?face  0 anmspd !
     0 perform>  begin  sudlr4  ?walk  pause again ;
+
+avatar :to start  idle ;

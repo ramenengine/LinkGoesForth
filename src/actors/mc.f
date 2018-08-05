@@ -18,7 +18,7 @@ table: (walkanms)  ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,  ;table
 
 avatar derive: mc
     (walkanms) walkanms !
+    actordata:  0 , 0 , 16 , 8 ,  \ map hitbox
 ;roledef
 
-here  0 , 0 , 16 , 8 ,  \ map hitbox
-    mc actor: *mc  idle ;
+mc actor: *mc

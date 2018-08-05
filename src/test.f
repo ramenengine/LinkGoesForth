@@ -31,13 +31,12 @@ objects clear
 objects one preview
 128 128 at  objects *mc  me to p1  1 priority !
 
-: go
+:is warm
     init
     s" data/world000.tmx" open-tilemap
     0 tmxlayer tilebuf0 0 0 load-tmxlayer
     1 tmxlayer tilebuf1 0 0 load-tmxlayer
 ;
+warm
 
-go
-
-' go publish bin/test/test
+publish bin/test/test
