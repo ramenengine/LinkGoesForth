@@ -27,8 +27,9 @@ action walk
 : fakeload  -vel  0 anmspd @!  15 pauses  anmspd ! ;
 : shiftwait  begin pause scrshift @ 0= until  x @ 1 + dup 8 mod - x !  y @ 1 + dup 8 mod - y !  idle ;
 
-: wall?  mbx 2@ 2+ x 2@ 2+  mbw 2@  #1 16 counttiles ;
-: ?nowall>  vx 2@ wall? -exit  r> drop  ;
+\ works *sometimes* :/ ...
+: wall?  mbx 2@ 2+  x 2@ 2+  mbw 2@  #1 16 counttiles ;
+: ?nowall>   vx 2@ wall? if  r> drop  then ;
 
 : ?edge
     dirkeys? -exit
