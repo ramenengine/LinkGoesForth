@@ -27,12 +27,15 @@ action walk
 : fakeload  -vel  0 anmspd @!  15 pauses  anmspd ! ;
 : shiftwait  begin pause scrshift @ 0= until  x @ 1 + dup 8 mod - x !  y @ 1 + dup 8 mod - y !  idle ;
 
+: wall?  mbx 2@ 2+ x 2@ 2+  mbw 2@  1 1 2-  #1 16 anytiles? ;
+: ?nowall  vx 2@ wall? if  r> drop  then ;
+
 : ?edge
     dirkeys? -exit
-    x @ cam 's x @ -  0 <=  left? and             if  fakeload  west  shiftwait  then
-    x @ cam 's x @ -  320 mbw @ -  >=  right? and if  fakeload  east  shiftwait  then
-    y @ cam 's y @ 8 + -  0 <=  up? and           if  fakeload  north shiftwait  then
-    y @ cam 's y @ -  208 mbh @ -  >=  down? and  if  fakeload  south shiftwait  then ;
+    x @ cam 's x @ -  0 <=  left? and             if  ?nowall  fakeload  west  shiftwait  then
+    x @ cam 's x @ -  320 mbw @ -  >=  right? and if  ?nowall  fakeload  east  shiftwait  then
+    y @ cam 's y @ 8 + -  0 <=  up? and           if  ?nowall  fakeload  north shiftwait  then
+    y @ cam 's y @ -  208 mbh @ -  >=  down? and  if  ?nowall  fakeload  south shiftwait  then ;
 
 : !walkv   walkv dir @ 2 * [] 2@  spd @ dup 2*  vx 2! ;
 : ?walk    dirkeys? -exit  walk ;
