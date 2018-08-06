@@ -22,7 +22,7 @@
 
 create tileprops  s" data/tileprops.dat" file,
 
-:is tileprops@  1i tileprops + c@ ;
+:is tileprops@  >gid 1i tileprops + c@ ;
 
 
 include src/actors/mc.f
