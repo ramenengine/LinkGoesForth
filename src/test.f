@@ -29,7 +29,7 @@ include src/actors/mc.f
 
 objects clear    
 objects one preview
-128 128 at  objects *mc  me to p1  1 priority !
+192 128 at  objects *mc  me to p1  1 priority !
 
 :is warm
     init

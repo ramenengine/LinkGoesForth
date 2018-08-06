@@ -21,10 +21,11 @@ roledef: actor
 
 \ reloading actor scripts updates their code
 \    (which may not take effect until user input due to old state remaining in memory)
-\ refreshing clears all objects with no role and reloads the map,
-\    but leaves all objects with a role alone and tries to execute START on them.
+
 action start
 actor :to start ;
+
+: update  ( objlist -- )  each>  role @ -exit  start ; 
 
 
 \ /actor  ( role -- )  initialize actor using given role 
