@@ -53,5 +53,5 @@ create coords  0 , 0 ,
 0 value p1
 
 \ object groups
-0 constant default_group
-1 constant ui_group
+0 keygroup default_group
+1 keygroup ui_group

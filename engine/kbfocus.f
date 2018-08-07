@@ -14,12 +14,12 @@
 \ if the object's objgroup does not have focus according to KEYGROUPS, force it to always return 0.    
 
 #1
-    bit KEYS_UI     \ includes arrowkeys, enter, esc, tab, backspace, and delete
+    bit KEYS_NAV    \ includes arrowkeys, enter, esc, tab, backspace, and delete
     bit KEYS_ACTION \ q w e r a s d f z x c v
     bit KEYS_QWERTY \ all the a-z keys
     bit KEYS_NUM    \ all the number keys 
     bit KEYS_PUNCT  \ - = [ ] \ ; ' , . /
-    bit KEYS_FUNC  \ function keys
+    bit KEYS_FUNC   \ function keys
 value LAST_KEYDEF
 
 rolevar objgroup
@@ -28,20 +28,24 @@ create keygroups  16 stack  \ this is user definable.  default everything respon
     keygroups 0 [] 16 $FFFFFFFF ifill
 create keydefs  256 stack
 
-: +keygroup  keygroups nth on ;
-: -keygroup  keygroups nth off ;
+\ keygroup ( n -- <name> ) ( -- bitmask-adr )
+\ my-keygroup  ( -- bitmask-adr )
+
+: keygroup  create , does> @ keygroups nth ;
+: my-keygroup  objgroup @ keygroups nth ;
 
 : keydef!  swap 1p keydefs nth ! ;
 : keydef@  1p keydefs nth @ ;
-    <left>  KEYS_UI keydef!
-    <right> KEYS_UI keydef!
-    <up>    KEYS_UI keydef!
-    <down>  KEYS_UI keydef!
-    <enter> KEYS_UI keydef!
-    <esc>   KEYS_UI keydef!
-    <tab>   KEYS_UI keydef!
-    <bksp>  KEYS_UI keydef!
-    <del>   KEYS_UI keydef!
+
+    <left>  KEYS_NAV keydef!
+    <right> KEYS_NAV keydef!
+    <up>    KEYS_NAV keydef!
+    <down>  KEYS_NAV keydef!
+    <enter> KEYS_NAV keydef!
+    <esc>   KEYS_NAV keydef!
+    <tab>   KEYS_NAV keydef!
+    <bksp>  KEYS_NAV keydef!
+    <del>   KEYS_NAV keydef!
     
     <q> KEYS_ACTION keydef!
     <w> KEYS_ACTION keydef!
