@@ -53,8 +53,9 @@ avatar :to walk
     walk_anim_speed anmspd !  !walkv  ?face
     0 perform>  begin  ?edge  1pace  ?turnstop  again ;
     
+variable wtf wtf mem
 avatar :to idle
     -vel  ?face  0 anmspd !
-    0 perform>  begin  sudlr4  ?walk  pause again ;
+    0 perform>  my-keygroup wtf !   begin  sudlr4  ?walk  pause again ;
 
 avatar :to start  idle ;

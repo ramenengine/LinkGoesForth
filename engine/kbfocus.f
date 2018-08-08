@@ -24,15 +24,14 @@ value LAST_KEYDEF
 
 rolevar objgroup
 
-create keygroups  16 stack  \ this is user definable.  default everything responds to everything
-    keygroups 0 [] 16 $FFFFFFFF ifill
+\ keygroup ( -- <name> ) ( -- bitmask-adr )
+: keygroup  create $ffffffff , ;
+
+keygroup default-group 
 create keydefs  256 stack
 
-\ keygroup ( n -- <name> ) ( -- bitmask-adr )
 \ my-keygroup  ( -- bitmask-adr )
-
-: keygroup  create , does> @ keygroups nth ;
-: my-keygroup  objgroup @ keygroups nth ;
+: my-keygroup  objgroup @ ?dup ?exit  default-group ;
 
 : keydef!  swap 1p keydefs nth ! ;
 : keydef@  1p keydefs nth @ ;
@@ -124,7 +123,7 @@ create keydefs  256 stack
 
 : ?filter
     role @ -exit  \ no role = no filter
-    dup keydef@  objgroup @ keygroups nth @  and ?exit
+    dup keydef@  objgroup @ and ?exit
     drop 0 r> drop ; 
 
 : klast      ?filter  kblast keydown ;
