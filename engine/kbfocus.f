@@ -1,7 +1,6 @@
 \ transparent keyboard focus for LinkGoesForth
-\ objects are given an OBJGROUP rolevar
-\ this points to a table KEYGROUPS - bitmasks for each objgroup
-\ to give different objgroups input focus, just change the corresponding bitmask in the KEYGROUPS stack.
+\ objects are given an KEYGROUP rolevar that points to a keygroup (just a bitmask variable)
+\ to give different objgroups input focus, just change the corresponding bitmask in the Keygroup.
 \ by default every object's keygroup is #0.
 
 \ an additional table called KEYDEFS defines the keygroup of each key.
@@ -9,9 +8,9 @@
 \ KEYDEFS is to be considered abstract.  but it happens to be mapped directly to the keyboard, for now.
 \ (I'll add joystick at some point)
 
-\ we redefine keyboard input words to transparently lookup the objgroup's bitmask and AND it with
+\ we redefine keyboard input words to transparently lookup the keygroup 's bitmask and AND it with
 \ the corresponding value from KEYDEFS before looking up the actual key.
-\ if the object's objgroup does not have focus according to KEYGROUPS, force it to always return 0.    
+\ if the object's keygroup does not have focus, force it to always return 0.    
 
 #1
     bit KEYS_NAV    \ includes arrowkeys, enter, esc, tab, backspace, and delete
@@ -22,16 +21,16 @@
     bit KEYS_FUNC   \ function keys
 value LAST_KEYDEF
 
-rolevar objgroup
+rolevar keygroup
 
-\ keygroup ( -- <name> ) ( -- bitmask-adr )
-: keygroup  create $ffffffff , ;
+\ keygroupdef ( -- <name> ) ( -- bitmask-adr )
+: keygroupdef  create $ffffffff , ;
 
-keygroup default-group 
+keygroupdef default-keygroup 
 create keydefs  256 stack
 
 \ my-keygroup  ( -- bitmask-adr )
-: my-keygroup  objgroup @ ?dup ?exit  default-group ;
+: my-keygroup  keygroup @ ?dup ?exit  default-keygroup ;
 
 : keydef!  swap 1p keydefs nth ! ;
 : keydef@  1p keydefs nth @ ;
@@ -123,7 +122,7 @@ create keydefs  256 stack
 
 : ?filter
     role @ -exit  \ no role = no filter
-    dup keydef@  objgroup @ and ?exit
+    dup keydef@  my-keygroup @ and ?exit
     drop 0 r> drop ; 
 
 : klast      ?filter  kblast keydown ;

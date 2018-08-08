@@ -52,5 +52,8 @@ create coords  0 , 0 ,
 \ player 1
 0 value p1
 
-\ object groups
-keygroup ui-group
+\ key groups
+keygroupdef ui-group
+
+\ debugging
+variable wtf wtf mem
