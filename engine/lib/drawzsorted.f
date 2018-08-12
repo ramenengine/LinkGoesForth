@@ -12,6 +12,6 @@ variable p
 : zsort  ['] zdepth@ rsort ;
 : drawem  ( addr cells -- )  cells bounds do  i @ as  draw  cell +loop ;
 : enqueue  ( objlist -- )  each>   hidden @ ?exit  priority @ p @ <> ?exit  me , ;
-: drawobjects  ( objlist priority -- )
+: drawzsorted  ( objlist priority -- )
     p !
     { >r  here dup  r> enqueue  #queued  2dup zsort  drawem  reclaim } ;

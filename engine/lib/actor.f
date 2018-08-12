@@ -1,9 +1,5 @@
 
-var dir
-0 constant right
-1 constant up
-2 constant left
-3 constant down
+table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table
 
 \   The actordata is a mechanism by which you can have many types of actors
 \ that share most of the same behavior but differ in some parameters.

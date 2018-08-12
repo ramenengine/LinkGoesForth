@@ -57,3 +57,10 @@ keygroupdef ui-group
 
 \ debugging
 variable wtf wtf mem
+
+\ directions
+var dir
+0 constant right
+1 constant up
+2 constant left
+3 constant down

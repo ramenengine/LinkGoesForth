@@ -29,4 +29,3 @@
         up? if up dir ! exit then
         down? if down dir ! exit then ;
 
-table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table

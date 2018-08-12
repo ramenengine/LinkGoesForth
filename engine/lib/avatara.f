@@ -1,5 +1,7 @@
 \ aligned version
 
+require engine/lib/actor.f
+
 0.15 constant walk_anim_speed
 var olddir
 rolevar walkanms
