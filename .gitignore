@@ -1,9 +1,7 @@
 bin
-afkit
-ramen
 *.komodoproject
 .komodotools
 kitconfig.f
 allegro5.cfg
-
 *.bak
+ 
