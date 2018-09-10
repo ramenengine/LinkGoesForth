@@ -39,4 +39,3 @@ objects one preview
 ;
 warm
 
-publish bin/test/test

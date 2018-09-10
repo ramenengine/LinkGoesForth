@@ -1,6 +1,8 @@
 create engine/engine.f  \ fixes require bug
 
-#1 #0 #0 include ramen/cutlet.f
+#1 #0 #0
+include ramen/ramen.f
+include ramen/cutlet.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal
 
