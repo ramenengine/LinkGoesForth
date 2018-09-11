@@ -16,9 +16,13 @@ s" data/samurai.png" frames
 
 table: (walkanms)  ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,  ;table
 
-avatar derive: mc
+roledef: mc  
     (walkanms) walkanms !
+    2 spd !
     actordata:  0 , 0 , 16 , 8 ,  \ map hitbox
 ;roledef
+mc :to start  avatara -> start ;
+mc :to idle   avatara -> idle ;
+mc :to walk   avatara -> walk ;
 
 mc actor: *mc

@@ -15,7 +15,7 @@ require engine/lib/layers.f
     mount
     window 4@ clip>
         window 2@ at
-        scrollx 2@ tw th scroll
+        scrollx 2@ tw th scrollofs
             third loc  swap pitch@  tilemap ;
 
 : drawbglayer

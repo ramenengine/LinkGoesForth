@@ -2,13 +2,10 @@
 var olddir
 rolevar walkanms
 rolevar spd
- 
-actor derive: avatar
-    1.5 spd !  
-;roledef
-
+basis{ 1.5 spd ! }
 action idle
 action walk
+roledef: avatar ;roledef
 
 : dirkeys?  left? right? up? down? or or or ;
 : ?face

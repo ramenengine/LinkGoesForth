@@ -6,7 +6,7 @@
     \ actually maybe could also draw the status screen here too just offscreen (we scroll up to see it)
 ;
 
-: rld  reinit  s" include src/test.f" evaluate ;
+: rld  reinit  s" include test.f" evaluate ;
 
 : previewkeys
     scrshift @ ?exit
@@ -25,7 +25,7 @@ create tileprops  s" data/tileprops.dat" file,
 :is tileprops@  >gid 1i tileprops + c@ ;
 
 
-include src/actors/mc.f
+include actors/mc.f
 
 objects clear    
 objects one preview

@@ -55,9 +55,6 @@ create coords  0 , 0 ,
 \ key groups
 keygroupdef ui-group
 
-\ debugging
-variable wtf wtf mem
-
 \ directions
 var dir
 0 constant right

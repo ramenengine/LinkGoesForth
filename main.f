@@ -9,7 +9,7 @@ include engine/engine.f
 \   game data
 \   save data
 
-include src/test.f
+include test.f
 
 
 
