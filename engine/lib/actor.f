@@ -8,10 +8,8 @@ rolevar actordata
 action start
 
 \ actordata: ( -- )   define actor data of current roledef.  must be defined within a roledef.
-: actordata:  here actordata ! ;
-basis{
-    actordata:  0 , 0 , 16 , 16 ,
-}
+: actordata:  here swap 's actordata ! ;
+basis actordata:  0 , 0 , 16 , 16 ,
 
 \ reloading actor scripts updates their code
 \    (which may not take effect until user input due to old state remaining in memory)

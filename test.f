@@ -6,7 +6,7 @@
     \ actually maybe could also draw the status screen here too just offscreen (we scroll up to see it)
 ;
 
-: rld  reinit  s" include test.f" evaluate ;
+: upd  reinit  s" include test.f" evaluate ;
 
 : previewkeys
     scrshift @ ?exit

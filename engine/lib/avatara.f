@@ -5,7 +5,7 @@ require engine/lib/tools.f
 table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table
 0.15 constant walk_anim_speed
 var olddir  rolevar walkanms  rolevar spd  action idle  action walk  
-basis >{  1.5 spd !  }
+1.5 basis 's spd !
 vtbl godir  ' west , ' east , ' north , ' south , 
 roledef: avatara
 : walk_snap  8 spd @ / ;

@@ -5,7 +5,7 @@ rolevar spd
 basis{ 1.5 spd ! }
 action idle
 action walk
-roledef: avatar ;roledef
+roledef: avatar
 
 : dirkeys?  left? right? up? down? or or or ;
 : ?face
