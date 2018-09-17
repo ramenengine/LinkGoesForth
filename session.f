@@ -1,9 +1,9 @@
 true constant dev
 true constant allegro-debug
-include main.f
-include test.f
+0 0 0 include ramen/ramen.f
 [in-platform] sf [if]
     include ramen/ide/ide.f
     'source-id @ close-file drop
+    s" test.f" file-exists [if]  ld test  [then]
     ide
-[then] 
+[then]  

@@ -1,3 +1,7 @@
+warning off
+empty
+#1    constant initial-display-flags  \ windowed
+include engine/engine.f
 
 :is hud
 \    0 0 at  displayw 32 black rectf
@@ -33,7 +37,7 @@ objects one preview
 
 :is warm
     init
-    s" data/world000.tmx" open-tilemap
+    s" data/world000_1.2.tmx" open-tilemap
     0 tmxlayer tilebuf0 0 0 load-tmxlayer
     1 tmxlayer tilebuf1 0 0 load-tmxlayer
 ;
