@@ -4,14 +4,14 @@ require engine/lib/tools.f
 
 table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table
 0.15 constant walk_anim_speed
-var olddir  rolevar walkanms  rolevar spd  action idle  action walk  
+var olddir  rolevar walkanims  rolevar spd  action idle  action walk  
 1.5 basis 's spd !
 vtbl godir  ' west , ' east , ' north , ' south , 
 roledef: avatara
 : walk_snap  8 spd @ / ;
 : ?face
     dir @ olddir @ = ?exit
-    dir @ olddir !  walkanms @ ?dup -exit dir @ [] @ execute ;
+    dir @ olddir !  walkanims @ ?dup -exit dir @ [] @ execute ;
 : fakeload  -vel  0 anmspd @!  15 pauses  anmspd ! ;
 : shiftwait  begin pause scrshift @ 0= until
     x @ 1 + dup 8 mod - x !  y @ 1 + dup 8 mod - y !  idle ;

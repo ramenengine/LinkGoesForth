@@ -2,3 +2,4 @@ bin
 kitconfig.f
 allegro5.cfg
 *.bak
+allegro.log

@@ -1,6 +1,6 @@
 0.15 constant walk_anim_speed
 var olddir
-rolevar walkanms
+rolevar walkanims
 rolevar spd
 basis{ 1.5 spd ! }
 action idle
@@ -11,8 +11,8 @@ roledef: avatar
 : ?face
     dir @ olddir @ <> if
         dir @ olddir !
-        walkanms @ -exit
-        walkanms @ dir @ [] @ execute
+        walkanims @ -exit
+        walkanims @ dir @ [] @ execute
     then 
 ;
 : !walkv   walkv dir @ 2 * [] 2@  spd @ dup 2*  vx 2! ;

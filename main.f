@@ -1,5 +1,3 @@
-warning off
-empty
 #1    constant initial-display-flags  \ windowed
 include engine/engine.f
     
