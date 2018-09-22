@@ -1,5 +1,4 @@
-#1 #1 #0
-include ramen/ramen.f
+#1 #1 #0 include ramen/ramen.f
 include ramen/cutlet.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal

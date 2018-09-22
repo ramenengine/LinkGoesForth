@@ -4,3 +4,6 @@
 [submodule "ramen"]
 	path = ramen
 	url = https://github.com/RogerLevy/ramen
+[submodule "ws"]
+	path = ws
+	url = https://github.com/RogerLevy/ws.git
