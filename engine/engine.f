@@ -1,4 +1,4 @@
-#1 #1 #0 include ramen/ramen.f
+#1 #3 #0 include ramen/ramen.f
 include ramen/cutlet.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal
@@ -11,12 +11,10 @@ include engine/loop.f
 include engine/util.f
 include engine/world.f
 
-
 : loadgfx
     s" data/bg.png" findfile loadbmp to bgbank
     bgbank tw th 1 maketiles
 ;
-
 
 : init
     loadgfx

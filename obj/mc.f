@@ -14,13 +14,16 @@ s" data/samurai.png" frames
 2dup walk_anim_speed anim: a_walkr   2 , 3 , ;anim   
 2drop
 
-roledef: mc
-    table: mc-walkanims  ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,  ;table
+defrole mc
+    table: mc-walkanims
+        ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,
+    ;table
     mc-walkanims mc 's walkanims !
     1.5 mc 's spd !
     mc actordata:  0 , 0 , 16 , 8 ,  \ map hitbox
+
 mc :to start  avatara -> start ;
 mc :to idle   avatara -> idle ;
 mc :to walk   avatara -> walk ;
 
-mc actor: *mc
+mc actor: /mc

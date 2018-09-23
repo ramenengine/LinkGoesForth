@@ -7,3 +7,6 @@
 [submodule "ws"]
 	path = ws
 	url = https://github.com/RogerLevy/ws.git
+[submodule "ws1"]
+	path = ws1
+	url = https://github.com/rogerlevy/ws1

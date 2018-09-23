@@ -20,6 +20,6 @@ basis actordata:  0 , 0 , 16 , 16 ,
 \ actor: ( role -- <name> )  ( objlist -- )
 
 : draw>greeny  draw>  16 16 green rectf ;
-: /actor  role !  actordata @ mbx 4 imove  down dir ! ;
-: does-actor  does>  swap one  draw>greeny  @ /actor  start ;
+: /actor  role !  actordata @ mbx 4 imove  down dir !  1 priority ! ;
+: does-actor  does>  draw>greeny  @ /actor  start ;
 : actor:   create does-actor  ( role ) ,  ;

@@ -11,3 +11,6 @@ variable scrshift
 : north  ?scrshift  coords y@ -exit  -1 coords y+!  0  -16 4 13 * / p1 's vx 2!  4 13 *  0 -4  shiftfor ;
 : south  ?scrshift                   1 coords y+!   0  16 4 13 * /  p1 's vx 2!  4 13 *  0 4   shiftfor ;
 
+: warp  ( row col )
+    swap  2dup coords 2!  320 208 2*  cam 's x 2!
+    cam 's x 2@ 152 96 2+ p1 's x 2! ;
