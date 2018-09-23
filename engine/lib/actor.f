@@ -14,7 +14,7 @@ basis actordata:  0 , 0 , 16 , 16 ,
 \ reloading actor scripts updates their code
 \    (which may not take effect until user input due to old state remaining in memory)
 
-: update  ( objlist -- )  each>  role @ -exit  start ; 
+: starts  ( objlist -- )  each>  role @ -exit  start ; 
 
 \ /actor  ( role -- )  initialize actor using given role 
 \ actor: ( role -- <name> )  ( objlist -- )

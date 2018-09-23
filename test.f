@@ -1,5 +1,6 @@
 require engine/engine.f  \ only load once for persistence
                          \ `empty` beforehand to reload everything
+include obj/bouncer.f
 include obj/mc.f
 
 :is hud
@@ -33,3 +34,4 @@ create tileprops  s" data/tileprops.dat" file,
     0 0 warp
 ;
 
+include workspace.f
