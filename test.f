@@ -1,7 +1,6 @@
 require engine/engine.f  \ only load once for persistence
                          \ `empty` beforehand to reload everything
-include obj/bouncer.f
-include obj/mc.f
+include game.f
 
 :is hud
 ;
@@ -18,20 +17,21 @@ include obj/mc.f
         <enter> pressed if  0 [']  rld later  then
 ;
 
-: preview  act> previewkeys ;
+: *preview  objects one act> previewkeys ;
 
 create tileprops  s" data/tileprops.dat" file,
 :is tileprops@  >gid 1i tileprops + c@ ;
-    
+
+: plunk  p1 0 -8 away ;
+
+: rolecall  s" Objects" find-objgroup load-objects ;
+
+\ runtime startup (test version)
 :is warm
-    init
-    objects clear    
-    objects one preview
-    objects one /mc  me to p1  
-    s" data/world.tmx" open-tilemap
-    0 tmxlayer tilebuf0 0 0 load-tmxlayer
-    1 tmxlayer tilebuf1 0 0 load-tmxlayer
-    0 0 warp
+    objects none  *p1  *preview
+    rolecall
 ;
 
+\ every time this file is loaded
+reinit
 include workspace.f

@@ -27,3 +27,5 @@ mc :to idle   avatara -> idle ;
 mc :to walk   avatara -> walk ;
 
 mc actor: /mc
+: *mc  objects one /mc ;
+mc :recipe *mc ;

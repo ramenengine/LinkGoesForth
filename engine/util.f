@@ -1,4 +1,4 @@
-: clear   each> me remove ;  
+: none   each> me remove ;  
 : -vel    0 0 vx 2! ;
 : left?   <left> kstate ;
 : right?  <right> kstate ;
