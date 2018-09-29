@@ -2,8 +2,14 @@ require engine/engine.f  \ only load once for persistence
                          \ `empty` beforehand to reload everything
 include game.f
 
+create heart$ #1 c, #3 c, 
 :is hud
-    0 0 at  default-font fnt !  s" Rupees: " print+  gp @ 1i (.) print
+    0 0 at  default-font fnt !
+    s" Rupees " print+  gp @ 1i (.) print+
+    newline
+    s" Arrows " print+  qv @ 1i (.) print+
+    newline
+    s" Life " print+  hp @ for red heart$ count print+ loop ;
 ;
 
 : previewkeys
@@ -29,6 +35,7 @@ create tileprops  s" data/tileprops.dat" file,
     overworld
     objects none  *preview
     rolecall
+    3 hp !
 ;
 
 \ every time this file is loaded

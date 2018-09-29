@@ -51,7 +51,9 @@ create coords  0 , 0 ,
 
 \ player 1
 0 value p1
-variable gp
+variable gp \ rupees
+variable hp \ hearts
+variable qv \ quiver
 
 \ key groups
 keygroupdef ui-group

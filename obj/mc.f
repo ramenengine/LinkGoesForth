@@ -26,7 +26,12 @@ defrole mc
 : cbox  x 2@ mbw 2@ area 1 1 2- ;
 : c/objs
     cbox   objects each>  2over 2over  cbox overlap? if
-        role @ item = if  1 gp +!  me remove  then
+        role @ item = if
+            kind@ rupee = if 1 gp +! then
+            kind@ heart = if 1 hp +! then
+            kind@ arrow = if 1 qv +! then
+            me remove
+        then
     then ;
 
 mc :to start  avatara -> start  act> c/objs ;
