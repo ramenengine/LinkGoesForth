@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="151">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="1024" height="1024" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="158">
  <tileset firstgid="1" source="bg.tsx"/>
  <tileset firstgid="513" source="screen_rect.tsx"/>
  <layer id="1" name="background" width="1024" height="1024">
@@ -19,6 +19,13 @@
   <object id="145" gid="65" x="208" y="64" width="16" height="16"/>
   <object id="146" gid="65" x="288" y="64" width="16" height="16"/>
   <object id="148" gid="66" x="208" y="96" width="16" height="16"/>
+  <object id="151" gid="67" x="208" y="112" width="16" height="16"/>
+  <object id="152" gid="67" x="208" y="128" width="16" height="16"/>
+  <object id="153" gid="67" x="192" y="128" width="16" height="16"/>
+  <object id="154" gid="67" x="176" y="128" width="16" height="16"/>
+  <object id="155" gid="67" x="160" y="128" width="16" height="16"/>
+  <object id="156" gid="67" x="144" y="128" width="16" height="16"/>
+  <object id="157" gid="67" x="144" y="144" width="16" height="16"/>
  </objectgroup>
  <layer id="3" name="grid markers" width="1024" height="1024" locked="1">
   <data encoding="base64" compression="zlib">

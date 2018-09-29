@@ -3,4 +3,5 @@
  <image source="bg.png" width="512" height="256"/>
  <tile id="64" type="bouncer"/>
  <tile id="65" type="mc"/>
+ <tile id="66" type="rupee"/>
 </tileset>

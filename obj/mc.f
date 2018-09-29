@@ -1,6 +1,7 @@
 \ main character
     
 require engine/lib/avatara.f
+require obj/rupee.f
 
 s" data/samurai.png" frames
     ( 00 ) 0 , 0 , 16 , 16 , 0 , 8 ,  \ down
@@ -22,7 +23,13 @@ defrole mc
     1.5 mc 's spd !
     mc actordata:  16 , 8 ,  \ map hitbox
 
-mc :to start  avatara -> start ;
+: cbox  x 2@ mbw 2@ area 1 1 2- ;
+: c/objs
+    cbox   objects each>  2over 2over  cbox overlap? if
+        role @ rupee = if  1 gp +!  me remove  then
+    then ;
+
+mc :to start  avatara -> start  act> c/objs 4drop ;
 mc :to idle   avatara -> idle ;
 mc :to walk   avatara -> walk ;
 

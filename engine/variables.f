@@ -51,6 +51,7 @@ create coords  0 , 0 ,
 
 \ player 1
 0 value p1
+variable gp
 
 \ key groups
 keygroupdef ui-group

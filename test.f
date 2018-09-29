@@ -3,6 +3,7 @@ require engine/engine.f  \ only load once for persistence
 include game.f
 
 :is hud
+    0 0 at  default-font fnt !  s" Rupees: " print+  gp @ 1i (.) print
 ;
 
 : previewkeys
@@ -32,5 +33,5 @@ create tileprops  s" data/tileprops.dat" file,
 
 \ every time this file is loaded
 loadtilemap
-stage starts 
+stage starts
 include workspace.f

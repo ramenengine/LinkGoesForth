@@ -1,9 +1,10 @@
 \ various extensions and functions
 var z
 : zofs  z @ negate peny +! ;
-var til
 : uptile  dup tile>bmp bmph negate mbh @ + peny +!  tile ; 
-: draw-ztile  til !  draw>  tint 4@ rgba  zofs til @ uptile ;
+: ztile  tint 4@ rgba  zofs  uptile ;
+var til 
+: draw>ztile  til ! draw> til @ ztile ;
 : sinbounce+  ( n height speed -- n ) rot + dup -rot sin abs * z ! ;
 : sinbounce  ( n height speed -- ) 2>r begin 2r@ sinbounce+ pause again ;
 
