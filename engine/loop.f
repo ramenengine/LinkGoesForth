@@ -38,7 +38,7 @@ require engine/lib/layers.f
 
 : think  stage each> act ;
 : move/map  1 tsize drop collide-objects-map ;
-: physics  objects dup move/map  each>  vx 2@ x 2+!  y @ zdepth ! ;
+: physics  objects dup move/map  each>  vx 2@ x 2+!  y @ mbh @ + zdepth ! ;
 : gamev  game each>  vx 2@ x 2+! ;
 : /game  step>  think  stage multi  physics  game multi  gamev  ;
 : hitbox  x 2@ at  mbw 2@ red rect ;
