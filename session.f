@@ -4,6 +4,6 @@ true constant allegro-debug
 include ramen/ramen.f
 ide
 include ws1/ws1.f
-ui off  info on
+ui off  
 ld test
 warm

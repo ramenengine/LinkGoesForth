@@ -1,7 +1,7 @@
 \ various extensions and functions
 var z
 : zofs  z @ negate peny +! ;
-: uptile  dup tile>bmp bmph negate mbh @ + peny +!  tile ; 
+: uptile  dup tsize  -0.5 -1 2*  mbw 2@ 0.5 1 2*  2+  +at  tile ; 
 : ztile  tint 4@ rgba  zofs  uptile ;
 var til 
 : draw>ztile  til ! draw> til @ ztile ;
