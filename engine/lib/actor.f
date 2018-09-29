@@ -8,6 +8,12 @@ var til
 : sinbounce+  ( n height speed -- n ) rot + dup -rot sin abs * z ! ;
 : sinbounce  ( n height speed -- ) 2>r begin 2r@ sinbounce+ pause again ;
 
+\ collision tool
+: cbox  x 2@ mbw 2@ area 1 1 2- ;
+0 value you
+: with  me to you ;
+: hit?  cbox you >{ cbox } overlap? ;
+
 
 
 \   The actordata is a mechanism by which you can have many types of actors

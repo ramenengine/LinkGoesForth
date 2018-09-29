@@ -36,11 +36,11 @@ require engine/lib/layers.f
     }
 ;
 
-: think  stage each> act ;
+: multi+acts  dup multi acts ;
 : move/map  1 tsize drop collide-objects-map ;
 : physics  objects dup move/map  each>  vx 2@ x 2+!  y @ mbh @ + zdepth ! ;
-: gamev  game each>  vx 2@ x 2+! ;
-: /game  step>  think  stage multi  physics  game multi  gamev  ;
+: gamev  game each> vx 2@ x 2+! ;
+: /game  step>  stage multi+acts  physics  game multi+acts  gamev  ;
 : hitbox  x 2@ at  mbw 2@ red rect ;
 : ?info  info @ -exit  scrolled  objects each> hitbox ;
 : overworld  /game  show>  black backdrop  layers  ?info ;

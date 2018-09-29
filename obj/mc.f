@@ -23,16 +23,13 @@ defrole mc
     1.5 mc 's spd !
     mc actordata:  16 , 8 ,  \ map hitbox
 
-: cbox  x 2@ mbw 2@ area 1 1 2- ;
 : c/objs
-    cbox   objects each>  2over 2over  cbox overlap? if
-        role @ item = if
+    with objects each>  hit? -exit  
+        role @ item = -exit
             kind@ rupee = if 1 gp +! then
             kind@ heart = if 1 hp +! then
             kind@ arrow = if 1 qv +! then
-            me remove
-        then
-    then ;
+            me remove ;
 
 mc :to start  avatara -> start  act> c/objs ;
 mc :to idle   avatara -> idle ;
