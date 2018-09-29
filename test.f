@@ -5,8 +5,6 @@ include game.f
 :is hud
 ;
 
-: upd  reinit  s" include test.f" evaluate ;
-
 : previewkeys
     scrshift @ ?exit
     ctrl? -exit
@@ -22,16 +20,17 @@ include game.f
 create tileprops  s" data/tileprops.dat" file,
 :is tileprops@  >gid 1i tileprops + c@ ;
 
-: plunk  p1 0 -8 away ;
+: plunk  p1 0 0 away ;
 
-: rolecall  s" Objects" find-objgroup load-objects ;
 
 \ runtime startup (test version)
 :is warm
-    objects none  *p1  *preview
+    overworld
+    objects none  *preview
     rolecall
 ;
 
 \ every time this file is loaded
-reinit
+loadtilemap
+stage starts 
 include workspace.f

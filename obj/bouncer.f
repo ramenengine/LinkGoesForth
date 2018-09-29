@@ -1,14 +1,6 @@
 \ bouncy pink thing
 require engine/lib/actor.f
-
-order
 defrole bouncer
-var bounce-y
-: >bounce  sin abs negate 24 * ;
-: draw-bouncer  draw> 0 0 bounce-y @ + +at  65 tile ;
-bouncer :to start  draw-bouncer 0 perform>
-    begin 4 + dup >bounce bounce-y !  pause again ;
-
-bouncer actor: /bouncer
-: *bouncer  objects one /bouncer ;
+bouncer :to start  65 draw-ztile  180 rnd perform> 24 3 sinbounce ;
+: *bouncer  bouncer *actor ;
 bouncer :recipe *bouncer ;

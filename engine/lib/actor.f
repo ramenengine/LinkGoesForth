@@ -1,15 +1,25 @@
+\ various extensions and functions
+var z
+: zofs  z @ negate peny +! ;
+var til
+: uptile  dup tile>bmp bmph negate mbh @ + peny +!  tile ; 
+: draw-ztile  til !  draw>  tint 4@ rgba  zofs til @ uptile ;
+: sinbounce+  ( n height speed -- n ) rot + dup -rot sin abs * z ! ;
+: sinbounce  ( n height speed -- ) 2>r begin 2r@ sinbounce+ pause again ;
+
+
 
 \   The actordata is a mechanism by which you can have many types of actors
 \ that share most of the same behavior but differ in some parameters.
 \ Or the other way around.
 \   actordata:
-\       mbx , mby , mbw , mbh ,  \ map hitbox
+\       mbw , mbh ,  \ map hitbox
 rolevar actordata
 action start
 
 \ actordata: ( -- )   define actor data of current roledef.  must be defined within a roledef.
 : actordata:  here swap 's actordata ! ;
-basis actordata:  0 , 0 , 16 , 16 ,
+basis actordata:  16 , 8 ,
 
 \ reloading actor scripts updates their code
 \    (which may not take effect until user input due to old state remaining in memory)
@@ -17,9 +27,8 @@ basis actordata:  0 , 0 , 16 , 16 ,
 : starts  ( objlist -- )  each>  role @ -exit  start ; 
 
 \ /actor  ( role -- )  initialize actor using given role 
-\ actor: ( role -- <name> )  ( objlist -- )
 
-: draw>greeny  draw>  16 16 green rectf ;
-: /actor  role !  actordata @ mbx 4 imove  down dir !  1 priority ! ;
-: does-actor  does>  draw>greeny  @ /actor  start ;
-: actor:   create does-actor  ( role ) ,  ;
+: draw>greeny  draw>  img @ if sprite+ exit then  mbw 2@ green rectf ;
+: @actordata  actordata @ mbw 2 imove ;
+: /actor  role !  @actordata  down dir !  1 priority !  draw>greeny  role @ -exit  start ;
+: *actor  objects one /actor ;

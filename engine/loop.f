@@ -1,15 +1,15 @@
 require engine/lib/drawzsorted.f
 require engine/lib/layers.f
 
-: drawsprlayer  ( list priority -- )
-    en @ 0= if  2drop  exit then
+: scrolled
     mount
         m1 cam 's x 2@ 2negate gscale 2af al_translate_transform
         m1 window 2@ gscale 2af al_translate_transform
-        m1 al_use_transform
-    drawzsorted
-    mount
-    ;
+        m1 al_use_transform ;
+
+: drawsprlayer  ( list priority -- )
+    en @ 0= if  2drop  exit then
+    scrolled  drawzsorted  mount ;
 
 : windowmap  ( array2d -- )
     mount
@@ -18,7 +18,7 @@ require engine/lib/layers.f
         scrollx 2@ tw th scrollofs
             third loc  swap pitch@  tilemap ;
 
-: drawbglayer
+: drawbglayer  ( array2d )
     en @ 0= if drop exit then    
     cam 's x 2@ scrollx 2!
     windowmap
@@ -26,6 +26,7 @@ require engine/lib/layers.f
 
 : layers
     {
+        background 
         hud
         spr0 as objects 0 drawsprlayer
         bg0 as tilebuf0   drawbglayer
@@ -36,9 +37,11 @@ require engine/lib/layers.f
 ;
 
 : think  stage each> act ;
-: physics  stage 16 collide-objects-map  stage each>  vx 2@ x 2+!  y @ zdepth ! ;
+: move/map  tsize drop collide-objects-map ;
+: physics  objects dup move/map  each>  vx 2@ x 2+!  y @ zdepth ! ;
 : gamev  game each>  vx 2@ x 2+! ;
-: /step  step>  think  stage multi  physics  game multi  gamev  ;
-: overworld  show>  black backdrop background layers ;
+: /game  step>  think  stage multi  physics  game multi  gamev  ;
+: hitbox  x 2@ at  mbw 2@ red rect ;
+: ?info  info @ -exit  scrolled  objects each> hitbox ;
+: overworld  /game  show>  black backdrop  layers  ?info ;
 
-/step overworld

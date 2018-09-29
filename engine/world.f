@@ -1,7 +1,3 @@
-\ Tiled
-:is tmxobj   ( object-nnn role -- ) nip  's recipe @ execute ;
-:is tmxrect  ( object-nnn w h -- ) 3drop ;
-:is tmximage ( object-nnn gid -- ) 2drop ;
 
 \ Scrolling
 variable scrshift

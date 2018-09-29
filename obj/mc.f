@@ -20,12 +20,12 @@ defrole mc
     ;table
     mc-walkanims mc 's walkanims !
     1.5 mc 's spd !
-    mc actordata:  0 , 0 , 16 , 8 ,  \ map hitbox
+    mc actordata:  16 , 8 ,  \ map hitbox
 
 mc :to start  avatara -> start ;
 mc :to idle   avatara -> idle ;
 mc :to walk   avatara -> walk ;
 
-mc actor: /mc
-: *mc  objects one /mc ;
-mc :recipe *mc ;
+: *mc  mc *actor ;
+: *p1  *mc me to p1 ;
+mc :recipe *p1 ;
