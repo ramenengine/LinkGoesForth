@@ -2,4 +2,4 @@
 include engine/engine.f
 include game.f
 
-:is warm  overworld  objects none  rolecall ; 
+:is warm  overworld  actors none  rolecall ; 

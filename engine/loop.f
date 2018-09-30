@@ -28,20 +28,20 @@ require engine/lib/layers.f
     {
         background 
         hud
-        spr0 as objects 0 drawsprlayer
+        spr0 as actors 0 drawsprlayer
         bg0 as tilebuf0   drawbglayer
-        spr1 as objects 1 drawsprlayer
+        spr1 as actors 1 drawsprlayer
         bg1 as tilebuf1   drawbglayer
-        spr2 as objects 2 drawsprlayer
+        spr2 as actors 2 drawsprlayer
     }
 ;
 
 : multi+acts  dup multi acts ;
 : move/map  1 tsize drop collide-objects-map ;
-: physics  objects dup move/map  each>  vx 2@ x 2+!  y @ mbh @ + zdepth ! ;
+: physics  stage dup move/map  each>  vx 2@ x 2+!  y @ mbh @ + zdepth ! ;
 : gamev  game each> vx 2@ x 2+! ;
 : /game  step>  stage multi+acts  physics  game multi+acts  gamev  ;
 : hitbox  x 2@ at  mbw 2@ red rect ;
-: ?info  info @ -exit  scrolled  objects each> hitbox ;
+: ?info  info @ -exit  scrolled  stage each> hitbox ;
 : overworld  /game  show>  black backdrop  layers  ?info ;
 

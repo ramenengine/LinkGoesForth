@@ -44,7 +44,7 @@ require engine/lib/actor.f
 
 : loadmap
     loadtilemap
-    objects none rolecall
+    actors none rolecall
 ;
 
 : init

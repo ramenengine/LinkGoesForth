@@ -9,27 +9,28 @@ s" data/samurai.png" frames
     ( 02 ) 16 , 0 , 16 , 16 , 0 , 8 ,  \ right
     ( 03 ) 16 , 16 , 16 , 16 , 0 , 8 ,
     ( 04 ) 32 , 0 , 16 , 16 , 0 , 8 ,  \ up
-2dup walk_anim_speed anim: a_walku   4 , 4 h, ;anim  
-2dup walk_anim_speed anim: a_walkd   0 , 1 , ;anim   
-2dup walk_anim_speed anim: a_walkl   2 h, 3 h, ;anim 
-2dup walk_anim_speed anim: a_walkr   2 , 3 , ;anim   
-2drop
+0.15
+3dup anim: a_walku   4 , 4 h, ;anim  
+3dup anim: a_walkd   0 , 1 , ;anim   
+3dup anim: a_walkl   2 h, 3 h, ;anim 
+3dup anim: a_walkr   2 , 3 , ;anim   
+3drop
 
-defrole mc
-    table: mc-walkanims
-        ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,
-    ;table
-    mc-walkanims mc 's walkanims !
-    1.5 mc 's spd !
-    mc actordata:  16 , 8 ,  \ map hitbox
+actor: mc 16 , 8 ,  \ map hitbox
+table: mc-walkanims
+    ' a_walkr , ' a_walku , ' a_walkl , ' a_walkd ,
+;table
+mc-walkanims mc 's walkanims !
+1.5 mc 's spd !
+
+: ?pickup  ( role -- flag )  role @ =  dup if me remove then ;
 
 : c/objs
-    with objects each>  hit? -exit  
-        role @ item = -exit
-            kind@ rupee = if 1 gp +! then
-            kind@ heart = if 1 hp +! then
-            kind@ arrow = if 1 qv +! then
-            me remove ;
+    with actors each>  hit? -exit  
+        rupee ?pickup if 1 gp +! then
+        heart ?pickup if 1 hp +! then
+        arrow ?pickup if 1 qv +! then
+;
 
 mc :to start  avatara -> start  act> c/objs ;
 mc :to idle   avatara -> idle ;

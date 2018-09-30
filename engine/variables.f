@@ -14,7 +14,7 @@ struct layer
     layer 0 svar bg.scrolly
 
 objlist stage
-    stage 256 pool: objects
+    stage 256 pool: actors
 
 \ the layers are orphan objects.  (layer objects describe the layers, they are not containers.)
 objlist layers

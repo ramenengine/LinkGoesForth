@@ -22,18 +22,17 @@ create heart$ #1 c, #3 c,
         <enter> pressed if  0 [']  rld later  then
 ;
 
-: *preview  objects one act> previewkeys ;
+: *preview  actors one act> previewkeys ;
 
 create tileprops  s" data/tileprops.dat" file,
 :is tileprops@  >gid 1i tileprops + c@ ;
 
 : plunk  p1 0 0 away ;
 
-
 \ runtime startup (test version)
 :is warm
     overworld
-    objects none  *preview
+    actors none  *preview
     rolecall
     3 hp !
 ;

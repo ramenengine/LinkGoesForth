@@ -12,7 +12,7 @@ var til
 : cbox  x 2@ mbw 2@ area 1 1 2- ;
 0 value you
 : with  me to you ;
-: hit?  cbox you >{ cbox } overlap? ;
+: hit?  me you = if 0 exit then   cbox you >{ cbox } overlap? ;
 
 
 
@@ -26,7 +26,13 @@ action start
 
 \ actordata: ( -- )   define actor data of current roledef.  must be defined within a roledef.
 : actordata:  here swap 's actordata ! ;
+struct %actordata
+    %actordata 0 svar ad.mbw
+    %actordata 0 svar ad.mbh
+    %actordata 0 svar ad.til
+
 basis actordata:  16 , 8 ,
+: actor:  defrole  lastrole @ actordata: ;
 
 \ reloading actor scripts updates their code
 \    (which may not take effect until user input due to old state remaining in memory)
@@ -36,6 +42,6 @@ basis actordata:  16 , 8 ,
 \ /actor  ( role -- )  initialize actor using given role 
 
 : draw>greeny  draw>  img @ if sprite+ exit then  mbw 2@ green rectf ;
-: @actordata  actordata @ mbw 2 imove ;
+: @actordata  actordata @ ad.mbw mbw 2 imove ;
 : /actor  role !  @actordata  down dir !  1 priority !  draw>greeny  role @ -exit  start ;
-: *actor  objects one /actor ;
+: *actor  actors one /actor ;
