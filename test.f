@@ -1,15 +1,18 @@
+
 require engine/engine.f  \ only load once for persistence
                          \ `empty` beforehand to reload everything
 include game.f
 
-create heart$ #1 c, #3 c, 
+create sym 0 c,
+: symbol+  1i sym c!  sym #1 print+ ;
+
 :is hud
-    0 0 at  default-font fnt !
+    0 0 at  msdos fnt !
     s" Rupees " print+  gp @ 1i (.) print+
     newline
     s" Arrows " print+  qv @ 1i (.) print+
     newline
-    s" Life " print+  hp @ for red heart$ count print+ loop ;
+    s" Life " print+  hp @ for red 3 symbol+ loop ;
 ;
 
 : previewkeys
@@ -30,6 +33,7 @@ create tileprops  s" data/tileprops.dat" file,
 : plunk  p1 0 0 away ;
 
 \ runtime startup (test version)
+:is cold ;
 :is warm
     overworld
     actors none  *preview
@@ -40,4 +44,5 @@ create tileprops  s" data/tileprops.dat" file,
 \ every time this file is loaded
 loadtilemap
 stage starts
-include workspace.f
+
+[defined] ui [if] include workspace.f [then]

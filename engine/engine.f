@@ -1,5 +1,5 @@
 cr .( Loading engine... ) \ "
-
+include afkit/ans/require.f
 require ramen/ramen.f
 #1 #5 #0 [ramen] [checkver]
 require ramen/cutlet.f
@@ -46,11 +46,4 @@ require engine/lib/actor.f
     loadtilemap
     actors none rolecall
 ;
-
-: init
-\    loadgfx
-\    loadmap
-; 
-
-:is cold  init ;  cold
 

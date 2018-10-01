@@ -1,7 +1,7 @@
 \ collectibles
 
 actor: rupee  2 , 16 , 0 ,
-actor: heart  8 , 8 ,  1 , 
+actor: heart  8 , 8 ,  1 ,
 actor: arrow  2 , 16 , 2 ,
     
 table: kinds
