@@ -1,12 +1,11 @@
 \ player-controlled avatar; aligned version
-require engine/lib/actor.f
-require engine/lib/tools.f
+depend engine/lib/actor.f
+depend engine/lib/tools.f
 
 table: walkv     1 , 0 ,   0 , -1 ,   -1 , 0 ,   0 , 1 ,   ;table
 0.15 constant walk_anim_speed
 var olddir  rolevar walkanims  rolevar spd  action idle  action walk  
 1.5 basis 's spd !
-vtbl godir  ' west , ' east , ' north , ' south , 
 defrole avatara
 : walk_snap  8 spd @ / ;
 : ?face

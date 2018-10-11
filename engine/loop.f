@@ -1,5 +1,5 @@
-require engine/lib/drawzsorted.f
-require engine/lib/layers.f
+depend engine/lib/drawzsorted.f
+depend engine/lib/layers.f
 
 : scrolled
     mount
@@ -27,12 +27,12 @@ require engine/lib/layers.f
 : layers
     {
         background 
-        hud
         spr0 as actors 0 drawsprlayer
         bg0 as tilebuf0   drawbglayer
         spr1 as actors 1 drawsprlayer
         bg1 as tilebuf1   drawbglayer
         spr2 as actors 2 drawsprlayer
+        hud
     }
 ;
 

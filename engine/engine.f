@@ -1,19 +1,20 @@
 cr .( Loading engine... ) \ "
-include afkit/ans/require.f
-require ramen/ramen.f
-#1 #5 #0 [ramen] [checkver]
-require ramen/cutlet.f
+include afkit/ans/depend.f
+depend ramen/ramen.f
+#1 #8 #0 [ramen] [checkver]
+depend ramen/stdpack.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal
 
-require ramen/lib/tiled.f
-require ramen/lib/buffer2d.f
-require engine/lib/kbfocus.f
+depend ramen/lib/tiled.f
+depend ramen/lib/buffer2d.f
+depend engine/lib/kbfocus.f
 include engine/variables.f
 include engine/loop.f
 include engine/util.f
 include engine/world.f
-require engine/lib/actor.f
+depend engine/lib/actor.f
+depend engine/lib/tools.f
 
 : !pos  ( gid )
     mbh @ negate y +!

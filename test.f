@@ -1,19 +1,7 @@
 
-require engine/engine.f  \ only load once for persistence
+depend engine/engine.f  \ only load once for persistence
                          \ `empty` beforehand to reload everything
 include game.f
-
-create sym 0 c,
-: symbol+  1i sym c!  sym #1 print+ ;
-
-:is hud
-    0 0 at  msdos fnt !
-    s" Rupees " print+  gp @ 1i (.) print+
-    newline
-    s" Arrows " print+  qv @ 1i (.) print+
-    newline
-    s" Life " print+  hp @ for red 3 symbol+ loop ;
-;
 
 : previewkeys
     scrshift @ ?exit

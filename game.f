@@ -12,6 +12,8 @@ create sym 0 c,
 : symbol+  1i sym c!  sym #1 print+ ;
 :is hud
     0 0 at  msdos fnt !
+    vieww 32 black rectf
+    white
     s" Rupees " print+  gp @ 1i (.) print+
     newline
     s" Arrows " print+  qv @ 1i (.) print+

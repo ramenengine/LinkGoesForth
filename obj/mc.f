@@ -1,7 +1,7 @@
 \ main character
     
-require engine/lib/avatara.f
-require obj/item.f
+depend engine/lib/avatara.f
+depend obj/item.f
 
 s" data/samurai.png" frames
     ( 00 ) 0 , 0 , 16 , 16 , 0 , 8 ,  \ down
