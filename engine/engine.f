@@ -1,7 +1,7 @@
 cr .( Loading engine... ) \ "
 include afkit/ans/depend.f
 depend ramen/ramen.f
-#1 #8 #0 [ramen] [checkver]
+#1 #8 #1 [ramen] [checkver]
 depend ramen/stdpack.f
 
 65536 2 * constant #MAXTILES   \ need to define this here not at the top otherwise it'll be decimal

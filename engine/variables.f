@@ -29,10 +29,6 @@ objlist game
 \ add object priority.  can be 0, 1, or 2.
 var priority
 
-\ extend objects: transform info (used by layers too)
-var sx  var sy  var ang
-color sizeof field tint
-
 \ extend objects: bg layer stuff
 var scrollx
 var scrolly
